@@ -20,7 +20,7 @@ namespace Urban_Broccoli.GameStates
     {
         #region Field Region
 
-        private readonly Stack<Texture2D> _backgrounds = new Stack<Texture2D>();
+        private readonly List<Texture2D> _backgrounds = new List<Texture2D>();
         private Rectangle backgroundDestination;
         private SpriteFont titleFont;
         private SpriteFont messageFont;
@@ -112,13 +112,13 @@ namespace Urban_Broccoli.GameStates
         private void LoadBackground()
         {
 
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-1"));
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-2"));
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-3"));
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-4"));
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Cloud-Layer-2"));
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Cloud-Layer-1"));
-            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Background"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Background"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Cloud-Layer-2"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Cloud-Layer-1"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-4"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-3"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-2"));
+            _backgrounds.Add(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-1"));
         }
 
         #endregion
