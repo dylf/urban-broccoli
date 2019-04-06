@@ -33,7 +33,7 @@ namespace Urban_Broccoli
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            screenRectangle = new Rectangle(0, 0, 1280, 720);
+            screenRectangle = new Rectangle(0, 0, 1920, 1080);
 
             graphics.PreferredBackBufferWidth = ScreenRectangle.Width;
             graphics.PreferredBackBufferHeight = ScreenRectangle.Height;

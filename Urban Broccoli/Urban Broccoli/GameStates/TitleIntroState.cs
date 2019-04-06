@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -19,12 +20,15 @@ namespace Urban_Broccoli.GameStates
     {
         #region Field Region
 
-        private Texture2D background;
+        private readonly Stack<Texture2D> _backgrounds = new Stack<Texture2D>();
         private Rectangle backgroundDestination;
-        private SpriteFont font;
+        private SpriteFont titleFont;
+        private SpriteFont messageFont;
         private TimeSpan elapsed;
-        private Vector2 position;
+        private Vector2 messagePosition;
+        private Vector2 titlePosition;
         private string message;
+        private string title;
 
         #endregion
 
@@ -44,6 +48,7 @@ namespace Urban_Broccoli.GameStates
         {
             backgroundDestination = Game1.ScreenRectangle;
             elapsed = TimeSpan.Zero;
+            title = "URBAN BROCCOLI";
             message = "PRESS SPACE TO CONTINUE";
 
             base.Initialize();
@@ -51,11 +56,16 @@ namespace Urban_Broccoli.GameStates
 
         protected override void LoadContent()
         {
-            background = content.Load<Texture2D>(@"GameScreens\titlescreen");
-            font = content.Load<SpriteFont>(@"Fonts\InterfaceFont");
+            LoadBackground();
+            messageFont = content.Load<SpriteFont>(@"Fonts\InterfaceFont");
+            titleFont = content.Load<SpriteFont>(@"Fonts\TitleFont");
 
-            Vector2 size = font.MeasureString(message);
-            position = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2,Game1.ScreenRectangle.Bottom - 50 - font.LineSpacing);
+            Vector2 size = messageFont.MeasureString(message);
+            messagePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2,Game1.ScreenRectangle.Bottom - 50 - messageFont.LineSpacing);
+
+            size = titleFont.MeasureString(title);
+            titlePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2, Game1.ScreenRectangle.Top + 50 + titleFont.LineSpacing);
+
             base.LoadContent();
         }
 
@@ -64,6 +74,7 @@ namespace Urban_Broccoli.GameStates
             PlayerIndex index = PlayerIndex.One;
             elapsed += gameTime.ElapsedGameTime;
             base.Update(gameTime);
+            UpdateTitlePosition();
         }
 
 
@@ -71,13 +82,36 @@ namespace Urban_Broccoli.GameStates
         {
             GameRef.SpriteBatch.Begin();
 
-            GameRef.SpriteBatch.Draw(background, backgroundDestination, Color.White);
+            foreach (Texture2D background in _backgrounds)
+            {
+                GameRef.SpriteBatch.Draw(background, backgroundDestination, new Color(1f, 1f, 0.7f, 1f));
+
+            }
             Color color = new Color(1f, 1f, 1f) * (float)Math.Abs(Math.Sin(elapsed.TotalSeconds * 2));
 
-            GameRef.SpriteBatch.DrawString(font, message, position, color);
+            GameRef.SpriteBatch.DrawString(messageFont, message, messagePosition, color);
+            GameRef.SpriteBatch.DrawString(titleFont, title, titlePosition, Color.White);
 
             GameRef.SpriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void UpdateTitlePosition()
+        {
+            Vector2 size = titleFont.MeasureString(title);
+            titlePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2, Game1.ScreenRectangle.Top + 50 + titleFont.LineSpacing + ((float)Math.Abs(Math.Sin(elapsed.TotalSeconds * 2)) * 10));
+        }
+
+        private void LoadBackground()
+        {
+
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-1"));
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-2"));
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-3"));
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Mushroom-Layer-4"));
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Cloud-Layer-2"));
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Cloud-Layer-1"));
+            _backgrounds.Push(content.Load<Texture2D>(@"GameScreens\Title\Background"));
         }
 
         #endregion

@@ -62,7 +62,12 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
-    <None Include="Content\Fonts\InterfaceFont.spritefont" />
+    <None Include="Content\Fonts\GameFont.spritefont" />
+    <None Include="Content\Fonts\InterfaceFont.spritefont">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Content\Fonts\Jamma.ttf" />
+    <None Include="Content\Fonts\TitleFont.spritefont" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,7 +33,7 @@ namespace Urban_Broccoli.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            //base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
