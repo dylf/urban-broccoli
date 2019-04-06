@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Urban_Broccoli.Components;
 using Urban_Broccoli.StateManager;
 
 namespace Urban_Broccoli.GameStates
@@ -73,8 +75,16 @@ namespace Urban_Broccoli.GameStates
         {
             PlayerIndex index = PlayerIndex.One;
             elapsed += gameTime.ElapsedGameTime;
-            base.Update(gameTime);
             UpdateTitlePosition();
+
+
+            if (Xin.CheckKeyReleased(Keys.Space) || Xin.CheckKeyReleased(Keys.Enter) ||
+                Xin.CheckMouseReleased(MouseButtons.Left))
+            {
+                manager.ChangeState((MainMenuState)GameRef.StartMenuState, index);
+            }
+
+            base.Update(gameTime);
         }
 
 

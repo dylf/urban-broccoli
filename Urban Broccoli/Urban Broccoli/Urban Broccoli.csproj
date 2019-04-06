@@ -45,6 +45,7 @@
     <Compile Include="Components\Xin.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameStates\BaseGameState.cs" />
+    <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="GameStates\TitleIntroState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

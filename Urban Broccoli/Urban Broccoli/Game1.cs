@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Urban_Broccoli.Components;
 using Urban_Broccoli.GameStates;
 using Urban_Broccoli.StateManager;
 
@@ -16,6 +17,7 @@ namespace Urban_Broccoli
 
         private GameStateManager gameStateManager;
         private ITitleIntroState titleIntroState;
+        private IMainMenuState startMenuState;
 
         private static Rectangle screenRectangle;
 
@@ -28,6 +30,22 @@ namespace Urban_Broccoli
         {
             get { return screenRectangle; }
         }
+
+        public GameStateManager GameStateManager
+        {
+            get { return gameStateManager; }
+        }
+
+        public ITitleIntroState TitleIntroState
+        {
+            get { return titleIntroState; }
+        }
+
+        public IMainMenuState StartMenuState
+        {
+            get { return startMenuState; }
+        }
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,7 +59,10 @@ namespace Urban_Broccoli
             gameStateManager = new GameStateManager(this);
             Components.Add(gameStateManager);
 
+            this.IsMouseVisible = true;
+
             titleIntroState = new TitleIntroState(this);
+            startMenuState = new MainMenuState(this);
 
             gameStateManager.ChangeState((TitleIntroState)titleIntroState, PlayerIndex.One);
         }
@@ -54,7 +75,7 @@ namespace Urban_Broccoli
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            Components.Add(new Xin(this));
 
             base.Initialize();
         }

@@ -177,7 +177,7 @@ namespace Urban_Broccoli.Components
                 Vector2 textSize = spriteFont.MeasureString(menuItems[i]);
 
                 Vector2 textPosition = menuPosition + new Vector2((int) (texture.Width - textSize.X) / 2,
-                                           (int) (texture.Height - textSize.Y / 2));
+                                           (int) (texture.Height - textSize.Y) / 2);
                 spriteBatch.DrawString(spriteFont, menuItems[i], textPosition, myColor);
 
                 menuPosition.Y += texture.Height + 50;
