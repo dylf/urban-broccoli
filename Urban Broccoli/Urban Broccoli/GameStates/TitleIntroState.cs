@@ -61,10 +61,10 @@ namespace Urban_Broccoli.GameStates
             titleFont = content.Load<SpriteFont>(@"Fonts\TitleFont");
 
             Vector2 size = messageFont.MeasureString(message);
-            messagePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2,Game1.ScreenRectangle.Bottom - 50 - messageFont.LineSpacing);
+            messagePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2,Game1.ScreenRectangle.Bottom - 80 - messageFont.LineSpacing);
 
             size = titleFont.MeasureString(title);
-            titlePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2, Game1.ScreenRectangle.Top + 50 + titleFont.LineSpacing);
+            titlePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2, Game1.ScreenRectangle.Top + 80 + titleFont.LineSpacing);
 
             base.LoadContent();
         }
@@ -81,15 +81,22 @@ namespace Urban_Broccoli.GameStates
         public override void Draw(GameTime gameTime)
         {
             GameRef.SpriteBatch.Begin();
-
+            int i = 1;
+            Color bgColor;
             foreach (Texture2D background in _backgrounds)
             {
-                GameRef.SpriteBatch.Draw(background, backgroundDestination, new Color(1f, 1f, 0.7f, 1f));
+            
+                bgColor = (i < 4) ? Color.White : Color.Green;
+                GameRef.SpriteBatch.Draw(background, backgroundDestination, bgColor);
+                i++;
 
             }
             Color color = new Color(1f, 1f, 1f) * (float)Math.Abs(Math.Sin(elapsed.TotalSeconds * 2));
 
             GameRef.SpriteBatch.DrawString(messageFont, message, messagePosition, color);
+            GameRef.SpriteBatch.DrawString(titleFont, title, new Vector2(titlePosition.X - 5 , titlePosition.Y + 5), Color.Black);
+            GameRef.SpriteBatch.DrawString(titleFont, title, new Vector2(titlePosition.X - 4 , titlePosition.Y + 4), Color.DarkGray);
+
             GameRef.SpriteBatch.DrawString(titleFont, title, titlePosition, Color.White);
 
             GameRef.SpriteBatch.End();
@@ -99,7 +106,7 @@ namespace Urban_Broccoli.GameStates
         private void UpdateTitlePosition()
         {
             Vector2 size = titleFont.MeasureString(title);
-            titlePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2, Game1.ScreenRectangle.Top + 50 + titleFont.LineSpacing + ((float)Math.Abs(Math.Sin(elapsed.TotalSeconds * 2)) * 10));
+            titlePosition = new Vector2((Game1.ScreenRectangle.Width - size.X) / 2, Game1.ScreenRectangle.Top + 80 + titleFont.LineSpacing + (float)Math.Abs(Math.Sin(elapsed.TotalSeconds * 2)) * 3);
         }
 
         private void LoadBackground()
