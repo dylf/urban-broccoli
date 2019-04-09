@@ -150,7 +150,7 @@ namespace Urban_Broccoli.TileEngine
 
             cameraPoint = Engine.VectorToCell(camera.Position);
             viewPoint = Engine.VectorToCell(new Vector2((camera.Position.X + Engine.ViewportRectangle.Width),
-                (cameraPosition.Y + Engine.ViewportRectangle.Height)));
+                (camera.Position.Y + Engine.ViewportRectangle.Height)));
             min.X = Math.Max(0, cameraPoint.X - 1);
             min.Y = Math.Max(0, cameraPoint.Y - 1);
             max.X = Math.Min(viewPoint.X + 1, Width);

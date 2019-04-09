@@ -18,6 +18,7 @@ namespace Urban_Broccoli
         private GameStateManager gameStateManager;
         private ITitleIntroState titleIntroState;
         private IMainMenuState startMenuState;
+        private IGamePlayState gamePlayState;
 
         private static Rectangle screenRectangle;
 
@@ -46,6 +47,11 @@ namespace Urban_Broccoli
             get { return startMenuState; }
         }
 
+        public IGamePlayState GamePlayState
+        {
+            get { return gamePlayState; }
+        } 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -63,6 +69,7 @@ namespace Urban_Broccoli
 
             titleIntroState = new TitleIntroState(this);
             startMenuState = new MainMenuState(this);
+            gamePlayState = new GamePlayState(this);
 
             gameStateManager.ChangeState((TitleIntroState)titleIntroState, PlayerIndex.One);
         }

@@ -54,7 +54,7 @@ namespace Urban_Broccoli.TileEngine
 
         public void LockCamera(TileMap map, Rectangle viewport)
         {
-            position.X = MathHelper.Clamp(position.X, 0, map.WidthInPixels = viewport.Width);
+            position.X = MathHelper.Clamp(position.X, 0, map.WidthInPixels - viewport.Width);
             position.Y = MathHelper.Clamp(position.Y, 0, map.HeightInPixels - viewport.Height);
         }
     }

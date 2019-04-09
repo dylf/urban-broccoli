@@ -117,7 +117,7 @@ namespace Urban_Broccoli.Components
             height -= 50;
         }
 
-        public void Update(GameTime gameTime, PlayerIndex index)
+        public void Update(GameTime gameTime, PlayerIndex? index)
         {
             Vector2 menuPosition = position;
             Point p = Xin.MouseState.Position;
