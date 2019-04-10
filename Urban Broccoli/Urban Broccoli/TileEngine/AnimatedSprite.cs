@@ -34,6 +34,7 @@ namespace Urban_Broccoli.TileEngine
         private Dictionary<AnimationKey, Animation> animations;
         private AnimationKey currentAnimation;
         private bool isAnimating;
+        private float scale = 2.0f;
 
         private Texture2D texture;
         public Vector2 Position;
@@ -66,6 +67,12 @@ namespace Urban_Broccoli.TileEngine
         public int Height
         {
             get => animations[currentAnimation].FrameHeight;
+        }
+
+        public float Scale
+        {
+            get => scale;
+            set => scale = value;
         }
 
         public float Speed
@@ -115,7 +122,24 @@ namespace Urban_Broccoli.TileEngine
 
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, animations[currentAnimation].CurrentFrameRect, Color.White);
+            spriteBatch.Draw(
+                texture,
+                Position,
+                animations[currentAnimation].CurrentFrameRect,
+                Color.White,
+                0.0f,
+                Vector2.One, 
+                scale,
+                SpriteEffects.None,
+                1f
+                    );
+        }
+
+        private Rectangle GetDestinationRectangle()
+        {
+            int width = (int)((float)animations[currentAnimation].CurrentFrameRect.Width * scale);
+            int height = (int)((float)animations[currentAnimation].CurrentFrameRect.Height * scale);
+            return new Rectangle((int)Position.X, (int)Position.Y, width, height);
         }
 
         public void LockToMap(Point mapSize)

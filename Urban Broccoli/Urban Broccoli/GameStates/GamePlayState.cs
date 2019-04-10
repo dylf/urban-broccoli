@@ -119,18 +119,22 @@ namespace Urban_Broccoli.GameStates
                 map.Draw(gameTime, GameRef.SpriteBatch, camera);
             }
 
-            GameRef.SpriteBatch.Begin(
-                SpriteSortMode.Deferred,
-                BlendState.AlphaBlend,
-                SamplerState.PointClamp,
-                null,
-                null,
-                null,
-                camera.Transformation);
+            if (camera != null)
+            {
+                GameRef.SpriteBatch.Begin(
+                    SpriteSortMode.Deferred,
+                    BlendState.AlphaBlend,
+                    SamplerState.PointClamp,
+                    null,
+                    null,
+                    null,
+                    camera.Transformation);
 
-            player.Sprite.Draw(gameTime, GameRef.SpriteBatch);
+                player.Sprite.Draw(gameTime, GameRef.SpriteBatch);
 
-            GameRef.SpriteBatch.End();
+                GameRef.SpriteBatch.End();
+
+            }
         }
 
         public void SetUpNewGame()
