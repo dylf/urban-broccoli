@@ -48,10 +48,13 @@
     <Compile Include="GameStates\GamePlayState.cs" />
     <Compile Include="GameStates\MainMenuState.cs" />
     <Compile Include="GameStates\TitleIntroState.cs" />
+    <Compile Include="PlayerComponents\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateManager\GameState.cs" />
     <Compile Include="StateManager\GameStateManager.cs" />
+    <Compile Include="TileEngine\AnimatedSprite.cs" />
+    <Compile Include="TileEngine\Animation.cs" />
     <Compile Include="TileEngine\Camera.cs" />
     <Compile Include="TileEngine\Engine.cs" />
     <Compile Include="TileEngine\TileLayer.cs" />

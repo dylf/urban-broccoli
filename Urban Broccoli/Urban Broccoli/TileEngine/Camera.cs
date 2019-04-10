@@ -57,5 +57,12 @@ namespace Urban_Broccoli.TileEngine
             position.X = MathHelper.Clamp(position.X, 0, map.WidthInPixels - viewport.Width);
             position.Y = MathHelper.Clamp(position.Y, 0, map.HeightInPixels - viewport.Height);
         }
+
+        public void LockToSprite(TileMap map, AnimatedSprite sprite, Rectangle viewPort)
+        {
+            position.X = (sprite.Position.X + sprite.Width / 2) - (viewPort.Width / 2);
+            position.Y = (sprite.Position.Y + sprite.Height / 2) - (viewPort.Height / 2);
+            LockCamera(map, viewPort);
+        }
     }
 }

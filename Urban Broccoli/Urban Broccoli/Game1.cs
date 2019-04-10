@@ -1,9 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using System.Reflection.Emit;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Urban_Broccoli.Components;
 using Urban_Broccoli.GameStates;
 using Urban_Broccoli.StateManager;
+using Urban_Broccoli.TileEngine;
 
 namespace Urban_Broccoli
 {
@@ -14,6 +17,7 @@ namespace Urban_Broccoli
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Dictionary<AnimationKey, Animation> playerAnimations = new Dictionary<AnimationKey, Animation>();
 
         private GameStateManager gameStateManager;
         private ITitleIntroState titleIntroState;
@@ -50,7 +54,12 @@ namespace Urban_Broccoli
         public IGamePlayState GamePlayState
         {
             get { return gamePlayState; }
-        } 
+        }
+
+        public Dictionary<AnimationKey, Animation> PlayerAnimations
+        {
+            get => playerAnimations;
+        }
 
         public Game1()
         {
@@ -83,6 +92,18 @@ namespace Urban_Broccoli
         protected override void Initialize()
         {
             Components.Add(new Xin(this));
+
+            Animation animation = new Animation(3, 32, 32, 0, 0);
+            playerAnimations.Add(AnimationKey.WalkDown, animation);
+
+            animation = new Animation(3, 32, 32, 0, 32);
+            playerAnimations.Add(AnimationKey.WalkLeft, animation);
+
+            animation = new Animation(3, 32, 32, 0, 64);
+            playerAnimations.Add(AnimationKey.WalkRight, animation);
+
+            animation = new Animation(3, 32, 32, 0, 96);
+            playerAnimations.Add(AnimationKey.WalkUp, animation);
 
             base.Initialize();
         }
@@ -118,7 +139,6 @@ namespace Urban_Broccoli
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
@@ -130,8 +150,6 @@ namespace Urban_Broccoli
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
