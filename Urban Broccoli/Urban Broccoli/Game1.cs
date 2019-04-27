@@ -3,6 +3,7 @@ using System.Reflection.Emit;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Urban_Broccoli.CharacterComponents;
 using Urban_Broccoli.Components;
 using Urban_Broccoli.GameStates;
 using Urban_Broccoli.StateManager;
@@ -20,6 +21,8 @@ namespace Urban_Broccoli
         Dictionary<AnimationKey, Animation> playerAnimations = new Dictionary<AnimationKey, Animation>();
 
         private GameStateManager gameStateManager;
+        private CharacterManager characterManager;
+
         private ITitleIntroState titleIntroState;
         private IMainMenuState startMenuState;
         private IGamePlayState gamePlayState;
@@ -56,6 +59,11 @@ namespace Urban_Broccoli
             get { return gamePlayState; }
         }
 
+        public CharacterManager CharacterManager
+        {
+            get { return characterManager; }
+        }
+
         public Dictionary<AnimationKey, Animation> PlayerAnimations
         {
             get => playerAnimations;
@@ -81,6 +89,8 @@ namespace Urban_Broccoli
             gamePlayState = new GamePlayState(this);
 
             gameStateManager.ChangeState((TitleIntroState)titleIntroState, PlayerIndex.One);
+
+            characterManager = CharacterManager.Instance;
         }
 
         /// <summary>
@@ -93,16 +103,16 @@ namespace Urban_Broccoli
         {
             Components.Add(new Xin(this));
 
-            Animation animation = new Animation(3, 32, 32, 0, 0);
+            Animation animation = new Animation(3, 64,64, 0, 0);
             playerAnimations.Add(AnimationKey.WalkDown, animation);
 
-            animation = new Animation(3, 32, 32, 0, 32);
+            animation = new Animation(3, 64, 64, 0, 64);
             playerAnimations.Add(AnimationKey.WalkLeft, animation);
 
-            animation = new Animation(3, 32, 32, 0, 64);
+            animation = new Animation(3, 64, 64, 0, 128);
             playerAnimations.Add(AnimationKey.WalkRight, animation);
 
-            animation = new Animation(3, 32, 32, 0, 96);
+            animation = new Animation(3, 64, 64, 0, 192);
             playerAnimations.Add(AnimationKey.WalkUp, animation);
 
             base.Initialize();

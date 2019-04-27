@@ -26,7 +26,7 @@ namespace Urban_Broccoli.TileEngine
         JumpRight,
         Dieing
     }
-    class AnimatedSprite
+    public class AnimatedSprite
     {
 
         #region Field Region

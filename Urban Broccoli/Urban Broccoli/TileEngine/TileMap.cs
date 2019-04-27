@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Urban_Broccoli.CharacterComponents;
 
 namespace Urban_Broccoli.TileEngine
 {
@@ -19,10 +20,13 @@ namespace Urban_Broccoli.TileEngine
         private TileLayer buildingLayer;
         private TileLayer decorationLayer;
         private Dictionary<string, Point> characters;
+        private CharacterManager characterManager;
 
-        [ContentSerializer] private int mapWidth;
+        [ContentSerializer]
+        private int mapWidth;
 
-        [ContentSerializer] private int mapHeight;
+        [ContentSerializer]
+        private int mapHeight;
 
         private TileSet tileSet;
 
@@ -106,6 +110,7 @@ namespace Urban_Broccoli.TileEngine
             this.characters = new Dictionary<string, Point>();
             this.tileSet = tileSet;
             this.mapName = mapName;
+            characterManager = CharacterManager.Instance;
         }
 
         public TileMap(TileSet tileSet, TileLayer groundLayer, TileLayer edgeLayer, TileLayer buildingLayer,
@@ -241,6 +246,35 @@ namespace Urban_Broccoli.TileEngine
             {
                 decorationLayer.Draw(gameTime, spriteBatch, tileSet, camera);
             }
+
+            DrawCharacters(gameTime, spriteBatch, camera);
+        }
+
+        public void DrawCharacters(GameTime gameTime, SpriteBatch spriteBatch, Camera camera)
+        {
+            spriteBatch.Begin(
+                SpriteSortMode.Deferred,
+                BlendState.AlphaBlend,
+                SamplerState.PointClamp,
+                null,
+                null,
+                null,
+                camera.Transformation);
+
+            foreach (string s in characters.Keys)
+            {
+                ICharacter c = CharacterManager.Instance.GetCharacter(s);
+
+                if (c != null)
+                {
+                    c.Sprite.Position.X = characters[s].X * Engine.TileWidth;
+                    c.Sprite.Position.Y = characters[s].Y * Engine.TileHeight;
+
+                    c.Sprite.Draw(gameTime, spriteBatch);
+                }
+            }
+
+            spriteBatch.End();
         }
 
         #endregion

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Urban_Broccoli.CharacterComponents;
 using Urban_Broccoli.Components;
 using Urban_Broccoli.PlayerComponents;
 using Urban_Broccoli.TileEngine;
@@ -46,6 +47,7 @@ namespace Urban_Broccoli.GameStates
         public override void Update(GameTime gameTime)
         {
             Vector2 motion = Vector2.Zero;
+            int collisionPadding = 8;
 
             if (Xin.KeyboardState.IsKeyDown(Keys.W) && Xin.KeyboardState.IsKeyDown(Keys.A))
             {
@@ -97,11 +99,37 @@ namespace Urban_Broccoli.GameStates
                 motion.Normalize();
                 motion *= (player.Speed * (float) gameTime.ElapsedGameTime.TotalSeconds);
 
+                Rectangle pRect = new Rectangle(
+                    (int)player.Sprite.Position.X + (int)motion.X + collisionPadding,
+                    (int)player.Sprite.Position.Y + (int)motion.Y + collisionPadding,
+                    Engine.TileWidth - collisionPadding,
+                    Engine.TileHeight - collisionPadding);
+
+                foreach (string s in map.Characters.Keys)
+                {
+                    ICharacter c = GameRef.CharacterManager.GetCharacter(s);
+                    Rectangle r = new Rectangle(
+                        (int) map.Characters[s].X * Engine.TileWidth + collisionPadding,
+                        (int) map.Characters[s].Y * Engine.TileHeight + collisionPadding,
+                        Engine.TileWidth - collisionPadding,
+                        Engine.TileHeight - collisionPadding);
+
+                    if (pRect.Intersects((r)))
+                    {
+                        motion = Vector2.Zero;
+                        break;
+                    }
+                }
+
                 Vector2 newPosition = player.Sprite.Position + motion;
 
                 player.Sprite.Position = newPosition;
                 player.Sprite.IsAnimating = true;
                 player.Sprite.LockToMap(new Point(map.WidthInPixels, map.HeightInPixels));
+            }
+            else
+            {
+                player.Sprite.IsAnimating = false;
             }
 
             camera.LockToSprite(map, player.Sprite, Game1.ScreenRectangle);
@@ -153,6 +181,15 @@ namespace Urban_Broccoli.GameStates
             map.FillEdges();
             map.FillBuilding();
             map.FillDecoration();
+
+            ICharacter teacherOne = Character.FromString(GameRef, "Lance,teacherone,WalkDown,teacherone");
+            ICharacter teacherTwo = Pcharacter.FromString(GameRef, "Lance,teachertwo,WalkDown,teachertwo");
+            
+            GameRef.CharacterManager.AddCharacter("teacherone", teacherOne);
+            GameRef.CharacterManager.AddCharacter("teachertwo", teacherTwo);
+
+            map.Characters.Add("teacherone", new Point(0, 4));
+            map.Characters.Add("teachertwo", new Point(4, 0));
 
             camera = new Camera();
         }

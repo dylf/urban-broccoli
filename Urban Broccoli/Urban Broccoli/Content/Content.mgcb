@@ -13,6 +13,39 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin femaleplayer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:femaleplayer.png
+
+#begin Fonts/GameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/GameFont.spritefont
+
+#begin Fonts/InterfaceFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/InterfaceFont.spritefont
+
+#begin Fonts/TitleFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/TitleFont.spritefont
+
 #begin GameScreens/menuscreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -25,28 +58,7 @@
 /processorParam:TextureFormat=Color
 /build:GameScreens/menuscreen.png
 
-#begin Fonts/InterfaceFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/InterfaceFont.spritefont
-
-#begin Fonts/GameFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/GameFont.spritefont
-
-#begin Fonts/TitleFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Fonts/TitleFont.spritefont
-
-#begin GameScreens/Title/Cloud-Layer-2.png
+#begin GameScreens/Title/Background.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -56,7 +68,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameScreens/Title/Cloud-Layer-2.png
+/build:GameScreens/Title/Background.png
 
 #begin GameScreens/Title/Cloud-Layer-1.png
 /importer:TextureImporter
@@ -70,7 +82,7 @@
 /processorParam:TextureFormat=Color
 /build:GameScreens/Title/Cloud-Layer-1.png
 
-#begin GameScreens/Title/Background.png
+#begin GameScreens/Title/Cloud-Layer-2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -80,7 +92,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameScreens/Title/Background.png
+/build:GameScreens/Title/Cloud-Layer-2.png
 
 #begin GameScreens/Title/Mushroom-Layer-1.png
 /importer:TextureImporter
@@ -130,6 +142,18 @@
 /processorParam:TextureFormat=Color
 /build:GameScreens/Title/Mushroom-Layer-4.png
 
+#begin maleplayer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maleplayer.png
+
 #begin Misc/wooden-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -142,7 +166,7 @@
 /processorParam:TextureFormat=Color
 /build:Misc/wooden-button.png
 
-#begin Tiles/tileset1.png
+#begin PlayerSprites/femaleplayer.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -152,7 +176,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Tiles/tileset1.png
+/build:PlayerSprites/femaleplayer.png
 
 #begin PlayerSprites/maleplayer.png
 /importer:TextureImporter
@@ -166,7 +190,7 @@
 /processorParam:TextureFormat=Color
 /build:PlayerSprites/maleplayer.png
 
-#begin PlayerSprites/femaleplayer.png
+#begin teacherone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -176,5 +200,29 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:PlayerSprites/femaleplayer.png
+/build:teacherone.png
+
+#begin teachertwo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:teachertwo.png
+
+#begin Tiles/tileset1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/tileset1.png
 
