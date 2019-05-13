@@ -1,4 +1,2 @@
 # urban-broccoli
-2D Top Down In MonoGame
-
-Based on : [A Summoner's Tale Series](http://gameprogrammingadventures.org/a-summoners-tale-series/)
+Framework for a 2D Top-Down RPG written in C# using MonoGame
